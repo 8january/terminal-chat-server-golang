@@ -1,4 +1,4 @@
-module github.com/8january/terminal_chat_server-golang
+module github.com/8january/terminal_chat_server_golang
 
 go 1.22.3
 
