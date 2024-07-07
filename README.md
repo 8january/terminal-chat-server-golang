@@ -27,13 +27,7 @@ git clone https://github.com/8january/terminal_chat_server_golang.git
 cd terminal_chat_server_golang
 ```
 
-2. Instale as dependências:
-
-```bash
-go get -u github.com/gorilla/websocket
-```
-
-3. Execute o servidor:
+2. Execute o servidor:
 
 ```bash
 go run main.go
