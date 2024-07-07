@@ -87,6 +87,25 @@ func (r *Room) removeConnection(conn *Connection) {
 	}
 }
 
+func (r *Room) sendJoinMessage(conn *Connection, message Message) {
+	r.mu.RLock()
+	defer r.mu.RUnlock()
+	msg := Message{
+		ID:      "0",
+		Type:    "server_message",
+		Name:    "server",
+		Room:    message.Room,
+		Content: message.Name + " joined",
+	}
+
+	jsonMessage, err := json.Marshal(msg)
+	if err != nil {
+		log.Println("JSON marshalling error:", err)
+	}
+	r.broadcast(conn, jsonMessage)
+
+}
+
 func (r *Room) broadcast(sender *Connection, message []byte) {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
@@ -137,6 +156,7 @@ func (s *Server) handleConnection(w http.ResponseWriter, r *http.Request) {
 
 	room := s.getOrCreateRoom(message.Room)
 	room.addConnection(connection)
+	room.sendJoinMessage(connection, message)
 
 	go connection.writePump()
 	connection.readPump(s, room, message.Room)
