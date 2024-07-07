@@ -41,5 +41,8 @@ go run main.go
 
 O servidor estará disponível em http://localhost:8080 por padrão.
 
+### Download do Executável
+Baixe o executável da versão v0.0.1-experimental [aqui](https://github.com/8january/terminal_chat_server_golang/releases/tag/v0.0.1-experimental).
+
 ### Contribuição
 Este projeto é experimental e não está planejado para desenvolvimento futuro. Contribuições não são esperadas neste momento.
